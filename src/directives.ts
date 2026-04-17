@@ -1,4 +1,5 @@
-import type { ElicitationDef, Step } from '@playbook-md/core';
+import * as fs from 'fs';
+import type { ElicitationDef, Step, PromptReference } from '@playbook-md/core';
 
 export function resolveElicit(
   elicit: ElicitationDef,
@@ -77,4 +78,23 @@ function extractField(text: string, field: string): string | null {
     }
   }
   return null;
+}
+
+export function resolvePromptRef(ref: PromptReference | undefined): string | undefined {
+  if (!ref) return undefined;
+  const id = ref.prompt_id;
+  if (id.startsWith('file:')) {
+    const filePath = id.slice('file:'.length);
+    if (!fs.existsSync(filePath)) {
+      throw new Error(`@prompt(${id}) — file not found: ${filePath}`);
+    }
+    return fs.readFileSync(filePath, 'utf-8');
+  }
+  if (id.startsWith('mcp:') || id.startsWith('library:')) {
+    throw new Error(
+      `@prompt(${id}) — MCP-sourced prompts are not supported in playbook-native v1. ` +
+      `Switch to PLAYBOOK-MD/playbook-run@v1 (composite).`,
+    );
+  }
+  return id;
 }
