@@ -1,5 +1,8 @@
 # playbook-native
 
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Run%20PLAYBOOK.md%20%28native%29-blue?logo=github)](https://github.com/marketplace/actions/run-playbook-md-native)
+[![CI](https://github.com/PLAYBOOK-MD/playbook-native/actions/workflows/ci.yml/badge.svg)](https://github.com/PLAYBOOK-MD/playbook-native/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/PLAYBOOK-MD/playbook-native?logo=github)](https://github.com/PLAYBOOK-MD/playbook-native/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Execute `.playbook.md` files as GitHub Action steps with a standalone Node runtime. No dependency on `anthropics/claude-code-action`; calls the Anthropic SDK directly, step by step.
