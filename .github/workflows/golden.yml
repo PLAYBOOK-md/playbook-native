@@ -15,8 +15,9 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Run golden integration test
+      - name: Run golden + vectors
         env:
           RUN_GOLDEN: '1'
+          RUN_VECTORS: '1'
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: npx vitest run test/integration.test.ts
+        run: npx vitest run test/integration.test.ts test/vectors.test.ts
