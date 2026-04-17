@@ -1,0 +1,45 @@
+name: 'Run PLAYBOOK.md (native)'
+description: 'Execute a .playbook.md file with a standalone Node runtime'
+author: 'PLAYBOOK-MD'
+branding:
+  icon: 'play-circle'
+  color: 'orange'
+
+inputs:
+  playbook:
+    description: 'Path to the .playbook.md file to execute'
+    required: true
+  inputs:
+    description: 'YAML block of input values passed to the playbook'
+    required: false
+    default: ''
+  elicit:
+    description: 'YAML block of @elicit overrides keyed by step number'
+    required: false
+    default: ''
+  output-path:
+    description: 'Destination file for the final artifact (default: out/<run-id>.md)'
+    required: false
+    default: ''
+  model:
+    description: 'Anthropic model ID (default: claude-opus-4-7)'
+    required: false
+    default: 'claude-opus-4-7'
+  strict:
+    description: 'Fail on validation warnings (true/false)'
+    required: false
+    default: 'false'
+
+outputs:
+  artifact-path:
+    description: 'Path to the written artifact'
+  status:
+    description: 'ok | failed | skipped'
+  step-count:
+    description: 'Number of steps executed'
+  warnings:
+    description: 'Number of warnings emitted'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
