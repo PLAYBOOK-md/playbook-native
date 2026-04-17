@@ -1,0 +1,17 @@
+name: Playbook — weekly docs drift
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: PLAYBOOK-MD/playbook-native@v1
+        with:
+          playbook: playbooks/weekly-docs-drift.playbook.md
+          output-path: out/drift-${{ github.run_id }}.md
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
