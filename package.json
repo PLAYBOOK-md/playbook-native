@@ -1,0 +1,26 @@
+{
+  "name": "playbook-native",
+  "version": "0.0.1",
+  "private": true,
+  "description": "GitHub Action: execute .playbook.md files with a standalone Node runtime",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@anthropic-ai/sdk": "^0.40.0",
+    "@playbook-md/core": "^0.1.2",
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.1.0"
+  }
+}
